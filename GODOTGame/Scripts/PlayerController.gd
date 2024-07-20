@@ -64,4 +64,3 @@ func _on_immune_timer_timeout():
 func _on_hit():
 	print("Is Immune")
 	isImmune = true
-	$ImmuneTimer.one_shot

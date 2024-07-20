@@ -518,7 +518,7 @@ autostart = true
 
 [node name="ReferenceRect1" type="ReferenceRect" parent="EnemySpawnAreas"]
 offset_left = -399.0
-offset_top = -219.0
+offset_top = -159.0
 offset_right = -360.0
 offset_bottom = 221.0
 
@@ -530,7 +530,7 @@ offset_bottom = 219.0
 
 [node name="ReferenceRect3" type="ReferenceRect" parent="EnemySpawnAreas"]
 offset_left = 364.0
-offset_top = -219.0
+offset_top = -154.0
 offset_right = 404.0
 offset_bottom = 221.0
 
