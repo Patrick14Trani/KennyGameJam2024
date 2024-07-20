@@ -14,6 +14,9 @@ var isImmune : bool = false
 
 var healthBar : ProgressBar
 
+@onready var p1AnimPlay = player1.get_node("AnimationPlayer") as AnimationPlayer
+@onready var p12AnimPlay = player2.get_node("AnimationPlayer") as AnimationPlayer
+
 func _ready():
 	currentHealth = maxHealth
 	healthBar = get_node("CanvasLayer/HealthBar")
@@ -34,7 +37,7 @@ func take_damage(damage):
 		currentHealth = clamp(currentHealth, 0, maxHealth)
 		healthBar.value = currentHealth
 		print("Player health %s" % currentHealth)
-		if(currentHealth == 0):
+		if(currentHealth <= 0):
 			kill()
 		else:
 			emit_signal("hit")
@@ -60,7 +63,12 @@ func getShield():
 func _on_immune_timer_timeout():
 	print("No Longer Immune")
 	isImmune = false
+	p1AnimPlay.stop()
+	p12AnimPlay.stop()
 
 func _on_hit():
 	print("Is Immune")
 	isImmune = true
+	p1AnimPlay.play("invulnerable")
+	p12AnimPlay.play("invulnerable")
+	$ImmuneTimer.start()

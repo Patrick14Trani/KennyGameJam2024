@@ -39,16 +39,15 @@ func get_damage():
 func _on_timer_timeout():
 	makePath()
 
-func handle_hit(damage):
+func handle_hit(damageDealt):
 	print("enemy hit")
-	health -= damage
+	health -= damageDealt
 	var text := plFloatingText.instantiate()
-	text.amount = damage
+	text.amount = damageDealt
 	text.global_position = global_position
 	get_tree().current_scene.add_child(text)
 	if health <= 0:
 		kill()
-	
 
 func kill():
 	print("enemy killed")

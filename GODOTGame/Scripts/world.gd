@@ -21,12 +21,6 @@ func _on_spawn_timer_timeout():
 	enemyInit.position = positionInRect
 	add_child(enemyInit)
 
-func _on_power_up_spawn_timer_timeout():
-	var powerUpInit = powerUp.instantiate()
-	var spawnArea = $PowerUpSpawnArea
-	var positionInRect = spawnArea.position + Vector2(randf() * spawnArea.size.x, randf() * spawnArea.size.y)
-	add_child(powerUpInit)
-
 func _on_health_potion_spawn_timer_timeout():
 	var health = healthPotion.instantiate()
 	health.playerCont = get_node("PlayerController")
