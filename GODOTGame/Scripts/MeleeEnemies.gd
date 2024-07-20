@@ -7,6 +7,9 @@ extends CharacterBody2D
 @export var damage: float = 10
 @export var health: float = 20
 
+var plEnemyDeathParticles := preload("res://Particles/enemy_death.tscn")
+var plFloatingText := preload("res://Particles/floating_text.tscn")
+
 func _ready():
 	set_physics_process(false)
 	call_deferred("enemies_setup")
@@ -39,9 +42,17 @@ func _on_timer_timeout():
 func handle_hit(damage):
 	print("enemy hit")
 	health -= damage
+	var text := plFloatingText.instantiate()
+	text.amount = damage
+	text.global_position = global_position
+	get_tree().current_scene.add_child(text)
 	if health <= 0:
 		kill()
+	
 
 func kill():
 	print("enemy killed")
+	var effect := plEnemyDeathParticles.instantiate()
+	effect.global_position = global_position
+	get_tree().current_scene.add_child(effect)
 	queue_free()
