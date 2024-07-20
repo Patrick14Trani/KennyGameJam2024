@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b68gtdyaq6dpa"]
 
-[ext_resource type="Script" path="res://Prefabs/test_player.gd" id="1_vgc2e"]
+[ext_resource type="Script" path="res://Scripts/test_player.gd" id="1_2nkoi"]
 [ext_resource type="Texture2D" uid="uid://cxivs1tgjv4cn" path="res://ArtAssets/Tiles/tile_0096.png" id="2_63f6b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1rtbd"]
@@ -9,7 +9,7 @@ height = 12.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_vgc2e")
+script = ExtResource("1_2nkoi")
 UpControl = "P1Up"
 DownControl = "P1Down"
 RightControl = "P1Right"

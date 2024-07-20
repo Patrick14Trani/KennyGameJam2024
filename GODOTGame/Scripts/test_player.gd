@@ -15,6 +15,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	velocity = get_directional_input() * SPEED
 	move_and_slide()
+	$Sprite2D.flip_h = velocity.x < 0
 
 func get_directional_input():
 	var move_input_vector = Vector2(
