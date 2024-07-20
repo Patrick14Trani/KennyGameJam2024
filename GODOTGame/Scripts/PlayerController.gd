@@ -1,17 +1,21 @@
 extends Node
-signal health_Updated(health)
+signal hit
 signal killed
 
 @export var maxHealth : float = 100
 @export var currentHealth : float
-var healthChange : float
 @export var score : int
+@export var player1 : CharacterBody2D
+@export var player2 : CharacterBody2D
+
+var shieldIcon = "res://ArtAssets/Tiles/Shield.png"
+var hasShield : bool = false
+var isImmune : bool = false
 
 var healthBar : ProgressBar
 
 func _ready():
 	currentHealth = maxHealth
-	healthChange = maxHealth
 	healthBar = get_node("CanvasLayer/HealthBar")
 	_configHealthBar()
 	score = 0
@@ -24,12 +28,40 @@ func kill():
 	pass
 
 func take_damage(damage):
-	print("taking damage")
-	currentHealth -= damage
+	if(!hasShield || !isImmune):
+		print("taking damage")
+		currentHealth -= damage
+		currentHealth = clamp(currentHealth, 0, maxHealth)
+		healthBar.value = currentHealth
+		print("Player health %s" % currentHealth)
+		if(currentHealth == 0):
+			kill()
+		else:
+			emit_signal("hit")
+	elif(hasShield):
+		print("SHIELDED")
+		hasShield = false
+		player1.get_node("StatusEffect").texture = null
+		player2.get_node("StatusEffect").texture = null
+		emit_signal("hit")
+	
+func heal(health):
+	print("healing")
+	currentHealth += health
 	currentHealth = clamp(currentHealth, 0, maxHealth)
 	healthBar.value = currentHealth
 	print("Player health %s" % currentHealth)
-	if(currentHealth == 0):
-		kill()
 
+func getShield():
+	player1.get_node("StatusEffect").texture = shieldIcon
+	player2.get_node("StatusEffect").texture = shieldIcon
+	hasShield = true
 
+func _on_immune_timer_timeout():
+	print("No Longer Immune")
+	isImmune = false
+
+func _on_hit():
+	print("Is Immune")
+	isImmune = true
+	$ImmuneTimer.one_shot

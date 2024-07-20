@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5jiudaksjntq"
-path="res://.godot/imported/tile_0114.png-f4d65dea114f58db005054fcdc944869.ctex"
+uid="uid://ctpw3xrfebcov"
+path="res://.godot/imported/HealthPotion.png-d5e340ba0a36b46f44525495acd5e5c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ArtAssets/Tiles/tile_0114.png"
-dest_files=["res://.godot/imported/tile_0114.png-f4d65dea114f58db005054fcdc944869.ctex"]
+source_file="res://ArtAssets/Tiles/HealthPotion.png"
+dest_files=["res://.godot/imported/HealthPotion.png-d5e340ba0a36b46f44525495acd5e5c2.ctex"]
 
 [params]
 

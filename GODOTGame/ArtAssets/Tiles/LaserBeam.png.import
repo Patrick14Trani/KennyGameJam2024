@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctpw3xrfebcov"
-path="res://.godot/imported/tile_0115.png-51c97aed7755b7a86d3e907ff7594bef.ctex"
+uid="uid://c5jiudaksjntq"
+path="res://.godot/imported/LaserBeam.png-1375afac1f8b4bae7a2c2599698194c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ArtAssets/Tiles/tile_0115.png"
-dest_files=["res://.godot/imported/tile_0115.png-51c97aed7755b7a86d3e907ff7594bef.ctex"]
+source_file="res://ArtAssets/Tiles/LaserBeam.png"
+dest_files=["res://.godot/imported/LaserBeam.png-1375afac1f8b4bae7a2c2599698194c1.ctex"]
 
 [params]
 
