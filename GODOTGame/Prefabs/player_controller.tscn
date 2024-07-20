@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpykax7rogaps"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_p4ltf"]
+
+[node name="PlayerController" type="Node"]
+script = ExtResource("1_p4ltf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -313.0
+offset_top = -37.0
+offset_right = 314.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
