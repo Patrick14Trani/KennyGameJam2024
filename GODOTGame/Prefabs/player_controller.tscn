@@ -21,6 +21,12 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ImmuneTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="ImmuneTimer" to="." method="_on_immune_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

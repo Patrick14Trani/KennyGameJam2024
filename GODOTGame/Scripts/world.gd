@@ -20,7 +20,6 @@ func _on_spawn_timer_timeout():
 	enemyInit.position = positionInRect
 	add_child(enemyInit)
 
-
 func _on_power_up_spawn_timer_timeout():
 	var powerUpInit = powerUp.instantiate()
 	var spawnArea = $PowerUpSpawnArea

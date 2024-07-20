@@ -1,16 +1,18 @@
-extends Node
+extends Node2D
 signal hit
 signal killed
 
 @export var maxHealth : float = 100
 @export var currentHealth : float
 @export var score : int
-@export var player1 : CharacterBody2D
-@export var player2 : CharacterBody2D
+@export var mage : CharacterBody2D
+@export var barb : CharacterBody2D
 
 var shieldIcon = "res://ArtAssets/Tiles/Shield.png"
 var hasShield : bool = false
 var isImmune : bool = false
+var islasering: bool = false
+var laser = preload("res://Prefabs/laser.tscn")
 
 var healthBar : ProgressBar
 
@@ -19,6 +21,11 @@ func _ready():
 	healthBar = get_node("CanvasLayer/HealthBar")
 	_configHealthBar()
 	score = 0
+
+func _process(delta) -> void:
+	if(islasering):
+		print("FIRIN MY LASER")
+		
 
 func _configHealthBar():
 	healthBar.max_value = maxHealth
@@ -41,8 +48,8 @@ func take_damage(damage):
 	elif(hasShield):
 		print("SHIELDED")
 		hasShield = false
-		player1.get_node("StatusEffect").texture = null
-		player2.get_node("StatusEffect").texture = null
+		mage.get_node("StatusEffect").texture = null
+		barb.get_node("StatusEffect").texture = null
 		emit_signal("hit")
 	
 func heal(health):
@@ -53,15 +60,28 @@ func heal(health):
 	print("Player health %s" % currentHealth)
 
 func getShield():
-	player1.get_node("StatusEffect").texture = shieldIcon
-	player2.get_node("StatusEffect").texture = shieldIcon
+	mage.get_node("StatusEffect").texture = shieldIcon
+	barb.get_node("StatusEffect").texture = shieldIcon
 	hasShield = true
 
 func _on_immune_timer_timeout():
 	print("No Longer Immune")
 	isImmune = false
 
+func _on_laser_timer_timeout():
+	print("No more laser time")
+	islasering = false
+	
 func _on_hit():
 	print("Is Immune")
 	isImmune = true
-	$ImmuneTimer.one_shot
+	$ImmuneTimer.start()
+
+func fireLaser():
+	islasering = true;
+	var laserInit = laser.instantiate()
+	laserInit.mage = mage
+	laserInit.barb = barb
+	add_child(laserInit)
+	$LaserTimer.start()
+

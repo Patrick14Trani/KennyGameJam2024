@@ -38,6 +38,7 @@ func _on_body_entered(body):
 				ApplyHealthPotion()
 			"LaserBeam":
 				print("LASER LASER")
+				playerController.fireLaser()
 			"Shield":
 				print("Shield Acquired")
 				ApplyShield()
