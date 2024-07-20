@@ -3,6 +3,7 @@ extends Node
 var ghost = preload("res://Prefabs/ghost.tscn")
 var chest = preload("res://Prefabs/chest.tscn")
 var powerUp = preload("res://Prefabs/power_up.tscn")
+var healthPotion = preload("res://Prefabs/health_potion.tscn")
 
 func _on_spawn_timer_timeout():
 	var enemies = [ghost, chest]
@@ -25,3 +26,12 @@ func _on_power_up_spawn_timer_timeout():
 	var spawnArea = $PowerUpSpawnArea
 	var positionInRect = spawnArea.position + Vector2(randf() * spawnArea.size.x, randf() * spawnArea.size.y)
 	add_child(powerUpInit)
+
+func _on_health_potion_spawn_timer_timeout():
+	var health = healthPotion.instantiate()
+	health.playerCont = get_node("PlayerController")
+	
+	var area = $ConsumablesSpawnArea/ReferenceRect
+	var positionInRect = area.position + Vector2(randf() * area.size.x, randf() * area.size.y)
+	health.position = positionInRect
+	add_child(health)
