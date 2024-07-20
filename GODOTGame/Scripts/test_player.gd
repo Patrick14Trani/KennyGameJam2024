@@ -5,15 +5,17 @@ extends CharacterBody2D
 @export var RightControl = ""
 @export var LeftControl = ""
 @export var texturePath = ""
-
 @export var SPEED = 100.0
+
+var screenSize;
 
 func _ready():
 	$Sprite2D.texture = load(texturePath)
+	screenSize = get_viewport()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
-	velocity = get_directional_input() * SPEED
+	velocity = get_directional_input().normalized() * SPEED
 	move_and_slide()
 	$Sprite2D.flip_h = velocity.x < 0
 
