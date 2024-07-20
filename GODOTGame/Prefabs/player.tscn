@@ -8,7 +8,7 @@
 radius = 5.0
 height = 12.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_b1yqu")
 UpControl = "P1Up"
