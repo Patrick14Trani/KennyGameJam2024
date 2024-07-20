@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7syhrqrt1yko"]
+[gd_scene load_steps=6 format=3 uid="uid://nieldc10lqee"]
 
 [ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_7kgqg"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="2_r6j2v"]
-[ext_resource type="PackedScene" uid="uid://cx0g68irabe3x" path="res://Prefabs/killzone.tscn" id="3_awuoa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbfkh"]
 atlas = ExtResource("2_r6j2v")
@@ -19,11 +18,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dfqwc"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4fam"]
 radius = 5.0
 height = 14.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cgr2k"]
 
 [node name="Ghost" type="CharacterBody2D"]
 motion_mode = 1
@@ -32,18 +29,11 @@ script = ExtResource("1_7kgqg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xebbc")
 
-[node name="Killzone" parent="." instance=ExtResource("3_awuoa")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_dfqwc")
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_cgr2k")
-disabled = true
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_a4fam")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var player1: Node2D
 @export var player2: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+@export var damage: float = 10
 
 func _ready():
 	set_physics_process(false)
@@ -27,6 +28,9 @@ func makePath() -> void:
 		nav_agent.target_position = player1.global_position
 	else:
 		nav_agent.target_position = player2.global_position
+
+func get_damage():
+	return damage
 
 func _on_timer_timeout():
 	makePath()
