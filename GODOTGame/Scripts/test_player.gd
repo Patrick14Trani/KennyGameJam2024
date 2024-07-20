@@ -5,11 +5,13 @@ extends CharacterBody2D
 @export var RightControl = ""
 @export var LeftControl = ""
 @export var texturePath = ""
-
 @export var SPEED = 100.0
+
+var screenSize;
 
 func _ready():
 	$Sprite2D.texture = load(texturePath)
+	screenSize = get_viewport()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
