@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7syhrqrt1yko"]
+[gd_scene load_steps=8 format=3 uid="uid://b7syhrqrt1yko"]
 
 [ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_7kgqg"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="2_r6j2v"]
@@ -23,7 +23,10 @@ animations = [{
 radius = 5.0
 height = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgr2k"]
+
 [node name="Ghost" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_7kgqg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -36,7 +39,10 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_dfqwc")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cgr2k")
+disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

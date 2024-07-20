@@ -6,9 +6,14 @@ extends CharacterBody2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
 func _ready():
-	makePath()
+	set_physics_process(false)
+	call_deferred("enemies_setup")
 
-func _physics_process(delta: float) -> void:
+func enemies_setup():
+	await get_tree().physics_frame
+	set_physics_process(true)
+
+func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * speed
 	move_and_slide()
@@ -18,7 +23,7 @@ func makePath() -> void:
 	var distanceToPlayer1 = currentPosition.distance_to(player1.global_position)
 	var distanceToPlayer2 = currentPosition.distance_to(player2.global_position)
 	
-	if distanceToPlayer1 >= distanceToPlayer2:
+	if distanceToPlayer1 <= distanceToPlayer2:
 		nav_agent.target_position = player1.global_position
 	else:
 		nav_agent.target_position = player2.global_position
