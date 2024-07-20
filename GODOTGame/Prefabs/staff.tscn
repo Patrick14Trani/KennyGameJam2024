@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://otrxsgfbyl24"]
+[gd_scene load_steps=6 format=3 uid="uid://otrxsgfbyl24"]
 
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_vwv32"]
+[ext_resource type="Script" path="res://Scripts/MeleeWeapon.gd" id="1_wgl58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6cyh"]
 atlas = ExtResource("1_vwv32")
@@ -21,6 +22,7 @@ animations = [{
 size = Vector2(4, 5)
 
 [node name="Staff" type="Area2D"]
+script = ExtResource("1_wgl58")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -21)
@@ -29,3 +31,5 @@ sprite_frames = SubResource("SpriteFrames_fte55")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -26.5)
 shape = SubResource("RectangleShape2D_ncnff")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

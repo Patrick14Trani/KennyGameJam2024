@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var player2: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var damage: float = 10
+@export var health: float = 20
 
 func _ready():
 	set_physics_process(false)
@@ -34,3 +35,13 @@ func get_damage():
 
 func _on_timer_timeout():
 	makePath()
+
+func handle_hit(damage):
+	print("enemy hit")
+	health -= damage
+	if health <= 0:
+		kill()
+
+func kill():
+	print("enemy killed")
+	queue_free()
