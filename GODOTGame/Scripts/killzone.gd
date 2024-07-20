@@ -1,10 +1,8 @@
 extends Area2D
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	print("You died.")
 	Engine.time_scale = 0.5
-	var collider = body.get_node("CollisionShape2D")
-	collider.queue_free()
 	
 	var timer = get_node("Timer") as Timer
 	timer.start()

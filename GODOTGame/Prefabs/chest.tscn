@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7k060605rjbm"]
+
+[ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_drk7y"]
+[ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_jnria"]
+[ext_resource type="PackedScene" uid="uid://cx0g68irabe3x" path="res://Prefabs/killzone.tscn" id="2_bwbqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2je6"]
+atlas = ExtResource("1_jnria")
+region = Rect2(85, 119, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqmr2"]
+atlas = ExtResource("1_jnria")
+region = Rect2(102, 119, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1kqv"]
+atlas = ExtResource("1_jnria")
+region = Rect2(119, 119, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50vpn"]
+atlas = ExtResource("1_jnria")
+region = Rect2(136, 119, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7o43g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2je6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqmr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1kqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50vpn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ea6d"]
+size = Vector2(12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7t2hc"]
+
+[node name="Chest" type="CharacterBody2D"]
+script = ExtResource("1_drk7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7o43g")
+autoplay = "default"
+frame = 3
+frame_progress = 0.44848
+
+[node name="Killzone" parent="." instance=ExtResource("2_bwbqv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_2ea6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_7t2hc")
+disabled = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
