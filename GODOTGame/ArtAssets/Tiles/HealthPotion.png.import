@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctpw3xrfebcov"
-path="res://.godot/imported/tile_0115.png-51c97aed7755b7a86d3e907ff7594bef.ctex"
+path="res://.godot/imported/HealthPotion.png-d5e340ba0a36b46f44525495acd5e5c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ArtAssets/Tiles/tile_0115.png"
-dest_files=["res://.godot/imported/tile_0115.png-51c97aed7755b7a86d3e907ff7594bef.ctex"]
+source_file="res://ArtAssets/Tiles/HealthPotion.png"
+dest_files=["res://.godot/imported/HealthPotion.png-d5e340ba0a36b46f44525495acd5e5c2.ctex"]
 
 [params]
 
