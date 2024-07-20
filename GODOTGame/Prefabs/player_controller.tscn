@@ -19,3 +19,8 @@ offset_right = 314.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="ImmuneTimer" type="Timer" parent="."]
+
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="timeout" from="ImmuneTimer" to="." method="_on_immune_timer_timeout"]

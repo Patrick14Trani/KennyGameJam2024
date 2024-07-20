@@ -1,5 +1,6 @@
 extends CharacterBody2D
 signal gotHit(damage)
+
 @export var UpControl = ""
 @export var DownControl = ""
 @export var RightControl = ""
@@ -40,5 +41,4 @@ func _on_area_2d_body_entered(body):
 	if(node.has_method("get_damage")):
 		print("Attempting Damage")
 		playerController.take_damage(node.damage)
-		#playerController.healthChange = playerController.currentHealth - node.damage
-	
+
