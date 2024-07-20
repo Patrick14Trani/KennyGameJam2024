@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgnvwhcx71ecg"]
+
+[ext_resource type="Script" path="res://Particles/EnemyDeath.gd" id="1_6k64c"]
+
+[node name="EnemyDeath" type="CPUParticles2D"]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_max = 5.0
+color = Color(0.966985, 0.300916, 0.33535, 1)
+script = ExtResource("1_6k64c")
