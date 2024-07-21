@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0arbnuqswkwc"]
+[gd_scene load_steps=4 format=3 uid="uid://c0arbnuqswkwc"]
 
 [ext_resource type="Script" path="res://Scripts/WavePause_menu.gd" id="1_cyvvp"]
+[ext_resource type="FontFile" uid="uid://r5ol33tcvymb" path="res://ArtAssets/Fonts/8-bit-pusab.ttf" id="2_a34av"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="2_qpo8e"]
 
 [node name="WavePauseMenu" type="Control"]
@@ -30,25 +31,32 @@ grow_vertical = 2
 layout_mode = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_a34av")
+text = "Points: 3"
+
 [node name="BuySpeed" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qpo8e")
-text = "Buy Speed"
+text = "Upgrade Player Speed: 1"
 
 [node name="BuyHealth" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qpo8e")
-text = "Buy Health"
+text = "Upgrade Player Health: 1"
 
 [node name="BuyDamage" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qpo8e")
-text = "Buy Damage"
+text = "Upgrade Player Damage: 1"
 
 [node name="BuyRotationSpeed" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qpo8e")
-text = "Buy Rotation Speed"
+text = "Upgrade Rotation Speed: 1"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -73,6 +81,7 @@ layout_mode = 2
 theme = ExtResource("2_qpo8e")
 text = "Next Wave"
 
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BuySpeed" to="." method="_on_buy_speed_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BuyHealth" to="." method="_on_buy_health_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BuyDamage" to="." method="_on_buy_damage_pressed"]
