@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=22 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
+[ext_resource type="PackedScene" uid="uid://cs2iw2vp0ev0i" path="res://Prefabs/throwing_axe.tscn" id="3_atk2q"]
 [ext_resource type="PackedScene" uid="uid://cg4pufvi4k2h2" path="res://Prefabs/fire_ball.tscn" id="3_nycyh"]
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
@@ -478,7 +479,8 @@ RightControl = "BarbRight"
 LeftControl = "BarbLeft"
 texturePath = "res://ArtAssets/Tiles/barb.png"
 playerController = NodePath("../PlayerController")
-projectile = ExtResource("3_nycyh")
+projectile = ExtResource("3_atk2q")
+projectileDamage = 15.0
 
 [node name="Mage" parent="." node_paths=PackedStringArray("playerController") instance=ExtResource("2_6vvws")]
 position = Vector2(-21, 0)
@@ -489,6 +491,7 @@ LeftControl = "MageLeft"
 texturePath = "res://ArtAssets/Tiles/mage.png"
 playerController = NodePath("../PlayerController")
 projectile = ExtResource("3_nycyh")
+projectileDamage = 30.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.4, 1.4)

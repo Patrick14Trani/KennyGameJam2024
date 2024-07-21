@@ -1,24 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg4pufvi4k2h2"]
+[gd_scene load_steps=4 format=3 uid="uid://cs2iw2vp0ev0i"]
 
-[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_yqbst"]
-[ext_resource type="Texture2D" uid="uid://b63s2t5ho08cr" path="res://ArtAssets/Tiles/tile_0131.png" id="2_3fja4"]
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_ehnye"]
+[ext_resource type="Texture2D" uid="uid://c3b7p78fsfstb" path="res://ArtAssets/Tiles/tile_0119.png" id="2_5phvv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5dsu"]
 
-[node name="FireBall" type="Area2D"]
+[node name="ThrowingAxe" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_yqbst")
-speed = 200
+script = ExtResource("1_ehnye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v5dsu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_3fja4")
+texture = ExtResource("2_5phvv")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
