@@ -15,4 +15,4 @@ func _ready():
 		add_child(mageWeapon)
 
 func _process(_delta):
-	rotation_degrees -= rotation_speed
+	rotation_degrees -= rotation_speed * _delta
