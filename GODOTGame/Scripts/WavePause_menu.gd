@@ -14,22 +14,22 @@ func _on_resume_pressed():
 func _on_buy_speed_pressed():
 	rootNode.buyPlayerSpeed()
 	playerSpeedButton.set_text("Upgrade Player Speed: " + str(rootNode.playerSpeedUpgradeCost))
-	pointsLabel.set_text(str(rootNode.points))
+	pointsLabel.set_text("Points: " + str(rootNode.points))
 
 func _on_buy_health_pressed():
 	rootNode.buyPlayerHealth()
 	playerHealthButton.set_text("Upgrade Player Health: " + str(rootNode.playerHealthUpgradeCost))
-	pointsLabel.set_text(str(rootNode.points))
+	pointsLabel.set_text("Points: " + str(rootNode.points))
 	
 func _on_buy_damage_pressed():
 	rootNode.buyPlayerDamage()
 	playerDamageButton.set_text("Upgrade Player Damage: " + str(rootNode.playerDamageUpgradeCost))
-	pointsLabel.set_text(str(rootNode.points))
+	pointsLabel.set_text("Points: " + str(rootNode.points))
 
 func _on_buy_rotation_speed_pressed():
 	rootNode.buyRotationSpeed()
 	rotationSpeedButton.set_text("Upgrade Rotation Speed: " + str(rootNode.rotationSpeedUpgradeCost))
-	pointsLabel.set_text(str(rootNode.points))
+	pointsLabel.set_text("Points: " + str(rootNode.points))
 
 func _on_hidden():
 #var playerSpeedUpgradeCost = 0
