@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhtu1qv0bk704"]
+
+[ext_resource type="Script" path="res://Scripts/lightning.gd" id="1_hs4nf"]
+
+[node name="Lightning" type="Line2D"]
+points = PackedVector2Array(0, 0, 0, 0)
+script = ExtResource("1_hs4nf")
+
+[node name="Area2D" type="Area2D" parent="."]

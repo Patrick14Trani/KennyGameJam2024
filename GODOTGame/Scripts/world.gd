@@ -4,6 +4,7 @@ var ghost = preload("res://Prefabs/ghost.tscn")
 var chest = preload("res://Prefabs/chest.tscn")
 var powerUp = preload("res://Prefabs/power_up.tscn")
 var healthPotion = preload("res://Prefabs/health_potion.tscn")
+var lightningPotion = preload("res://Prefabs/lightningUpgrade.tscn")
 
 func _on_spawn_timer_timeout():
 	var enemies = [ghost, chest]
@@ -29,3 +30,12 @@ func _on_health_potion_spawn_timer_timeout():
 	var positionInRect = area.position + Vector2(randf() * area.size.x, randf() * area.size.y)
 	health.position = positionInRect
 	add_child(health)
+
+func _on_lightning_spawn_timer_timeout():
+	var lightning = lightningPotion.instantiate()
+	lightning.playerCont = get_node("PlayerController")
+	
+	var area = $ConsumablesSpawnArea/LightningSpawn
+	lightning.position = area.position + Vector2(randf() * area.size.x, randf() * area.size.y)
+	add_child(lightning)
+	

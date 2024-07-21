@@ -7,9 +7,13 @@ signal killed
 @export var score : int
 @export var player1 : CharacterBody2D
 @export var player2 : CharacterBody2D
+@export var lightningObject : Line2D
+
+var lightning = preload("res://Prefabs/lightning.tscn")
 
 var shieldIcon = "res://ArtAssets/Tiles/Shield.png"
 var hasShield : bool = false
+var hasLightning : bool = false
 var isImmune : bool = false
 
 var healthBar : ProgressBar
@@ -60,6 +64,17 @@ func getShield():
 	player2.get_node("StatusEffect").texture = shieldIcon
 	hasShield = true
 
+func start_Lightning():
+	print("LASER LASER")
+	hasLightning = true
+	$LightningTimer.start()
+	var lightningInit = lightning.instantiate()
+	lightningInit.mage = player1
+	lightningInit.barb = player2
+	get_parent().add_child(lightningInit)
+	lightningObject = lightningInit
+	pass
+
 func _on_immune_timer_timeout():
 	print("No Longer Immune")
 	isImmune = false
@@ -72,3 +87,8 @@ func _on_hit():
 	p1AnimPlay.play("invulnerable")
 	p12AnimPlay.play("invulnerable")
 	$ImmuneTimer.start()
+
+func _on_lightning_timer_timeout():
+	hasLightning = false
+	lightningObject.queue_free()
+	

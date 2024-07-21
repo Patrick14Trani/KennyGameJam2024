@@ -546,9 +546,20 @@ offset_top = -115.0
 offset_right = 344.0
 offset_bottom = 167.0
 
+[node name="LightningSpawn" type="ReferenceRect" parent="ConsumablesSpawnArea"]
+offset_left = -213.0
+offset_top = -188.0
+offset_right = 216.0
+offset_bottom = -173.0
+
 [node name="HealthPotionSpawnTimer" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
 
+[node name="LightningSpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]
+[connection signal="timeout" from="LightningSpawnTimer" to="." method="_on_lightning_spawn_timer_timeout"]

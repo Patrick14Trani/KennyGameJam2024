@@ -24,5 +24,10 @@ theme = ExtResource("2_i13rl")
 
 [node name="ImmuneTimer" type="Timer" parent="."]
 
+[node name="LightningTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="ImmuneTimer" to="." method="_on_immune_timer_timeout"]
+[connection signal="timeout" from="LightningTimer" to="." method="_on_lightning_timer_timeout"]
