@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=15 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
+[ext_resource type="PackedScene" path="res://Scenes/defeat.tscn" id="5_u0gce"]
+[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="6_d4knq"]
+[ext_resource type="PackedScene" path="res://Scenes/victory.tscn" id="7_r5cde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjg8m"]
 size = Vector2(824, 13)
@@ -559,6 +562,27 @@ autostart = true
 [node name="LightningSpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Defeat" parent="." instance=ExtResource("5_u0gce")]
+visible = false
+offset_left = -575.0
+offset_top = -303.0
+offset_right = -575.0
+offset_bottom = -303.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_d4knq")]
+visible = false
+offset_left = -575.0
+offset_top = -303.0
+offset_right = -575.0
+offset_bottom = -303.0
+
+[node name="Victory" parent="." instance=ExtResource("7_r5cde")]
+visible = false
+offset_left = -575.0
+offset_top = -303.0
+offset_right = -575.0
+offset_bottom = -303.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]
