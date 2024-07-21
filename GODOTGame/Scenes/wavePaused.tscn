@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcfahtf0hp8jv"]
+[gd_scene load_steps=3 format=3 uid="uid://ep57y0buxq8n"]
 
-[ext_resource type="Script" path="res://Scripts/finished_menu.gd" id="1_lnuhi"]
-[ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="2_v8r6x"]
+[ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="1_b7i8x"]
 
-[node name="Victory" type="Control"]
+[sub_resource type="GDScript" id="GDScript_pknmy"]
+script/source = "extends Control
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()
+"
+
+[node name="WavePaused" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lnuhi")
+script = SubResource("GDScript_pknmy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -29,9 +35,9 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme = ExtResource("2_v8r6x")
+theme = ExtResource("1_b7i8x")
 theme_override_colors/font_color = Color(0.235294, 0.470588, 0.705882, 1)
-text = "Victory"
+text = "Waves Paused"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -40,19 +46,8 @@ size_flags_vertical = 4
 
 [node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_v8r6x")
+theme = ExtResource("1_b7i8x")
 theme_override_colors/font_pressed_color = Color(0.235294, 0.470588, 0.705882, 1)
 theme_override_colors/font_hover_color = Color(0.235294, 0.470588, 0.705882, 1)
 theme_override_colors/font_focus_color = Color(0.235294, 0.470588, 0.705882, 1)
-text = "Restart"
-
-[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_v8r6x")
-theme_override_colors/font_pressed_color = Color(0.235294, 0.470588, 0.705882, 1)
-theme_override_colors/font_hover_color = Color(0.235294, 0.470588, 0.705882, 1)
-theme_override_colors/font_focus_color = Color(0.235294, 0.470588, 0.705882, 1)
-text = "Main Menu"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+text = "Continue"

@@ -1,14 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=19 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
-[ext_resource type="PackedScene" uid="uid://dqxrvlcj5napx" path="res://Scenes/pause_menu.tscn" id="5_ksg1s"]
+[ext_resource type="PackedScene" uid="uid://barrwtpho6031" path="res://Scenes/pause_menu.tscn" id="5_ksg1s"]
 [ext_resource type="PackedScene" uid="uid://ejtted0kql6g" path="res://Scenes/defeat.tscn" id="6_d6iyb"]
 [ext_resource type="Script" path="res://Scripts/victory_timer.gd" id="7_bvd36"]
-[ext_resource type="PackedScene" uid="uid://fetpelbkys7u" path="res://Scenes/victory.tscn" id="7_cgk4m"]
+[ext_resource type="PackedScene" uid="uid://dcfahtf0hp8jv" path="res://Scenes/victory.tscn" id="7_cgk4m"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="7_m6eni"]
+[ext_resource type="FontFile" uid="uid://r5ol33tcvymb" path="res://ArtAssets/Fonts/8-bit-pusab.ttf" id="10_n2clr"]
+[ext_resource type="PackedScene" uid="uid://c0arbnuqswkwc" path="res://Scenes/wavePause_menu.tscn" id="10_oh8e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjg8m"]
 size = Vector2(824, 13)
@@ -598,6 +600,31 @@ offset_top = -324.0
 offset_right = -574.0
 offset_bottom = -324.0
 
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="WaveLabel" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 197.0
+offset_right = 394.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_n2clr")
+text = "Wave: 1"
+
+[node name="WavePauseMenu" parent="." instance=ExtResource("10_oh8e3")]
+visible = false
+z_index = 5
+offset_left = -573.0
+offset_top = -137.0
+offset_right = -573.0
+offset_bottom = -137.0
+
+[node name="Enemies" type="Node" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]
 [connection signal="timeout" from="VictoryTimer" to="." method="_on_victory_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
