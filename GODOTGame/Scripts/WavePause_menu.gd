@@ -40,4 +40,4 @@ func _on_hidden():
 	playerDamageButton.set_text("Upgrade Player Damage: " + str(rootNode.playerDamageUpgradeCost))
 	playerHealthButton.set_text("Upgrade Player Health: " + str(rootNode.playerHealthUpgradeCost))
 	rotationSpeedButton.set_text("Upgrade Rotation Speed: " + str(rootNode.rotationSpeedUpgradeCost))
-	pointsLabel.set_text("Points: " + str(3))
+	pointsLabel.set_text("Points: " + str(rootNode.points))
