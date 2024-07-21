@@ -22,18 +22,18 @@ animations = [{
 radius = 5.0
 height = 14.0
 
-[node name="Ghost" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Ghost" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_7kgqg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xebbc")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_a4fam")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
