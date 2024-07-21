@@ -75,6 +75,7 @@ shape = SubResource("CapsuleShape2D_cfs7j")
 
 [node name="Weapon" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_er4u0")
+rotation_speed = 500
 player = NodePath("..")
 
 [node name="StatusEffect" type="Sprite2D" parent="."]
