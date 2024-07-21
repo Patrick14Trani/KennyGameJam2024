@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5dsu"]
 
 [node name="FireBall" type="Area2D"]
+collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_74k8u")
 

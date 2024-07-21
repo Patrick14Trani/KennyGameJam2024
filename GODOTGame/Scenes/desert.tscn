@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
 [ext_resource type="PackedScene" uid="uid://barrwtpho6031" path="res://Scenes/pause_menu.tscn" id="5_ksg1s"]
-[ext_resource type="PackedScene" path="res://Scenes/defeat.tscn" id="6_d6iyb"]
+[ext_resource type="PackedScene" uid="uid://ejtted0kql6g" path="res://Scenes/defeat.tscn" id="6_d6iyb"]
 [ext_resource type="Script" path="res://Scripts/victory_timer.gd" id="7_bvd36"]
 [ext_resource type="PackedScene" uid="uid://dcfahtf0hp8jv" path="res://Scenes/victory.tscn" id="7_cgk4m"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="7_m6eni"]

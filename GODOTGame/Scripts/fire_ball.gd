@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 2
+@export var speed = 100
 #@export var target: CharacterBody2D
 
 var target = null
@@ -12,10 +12,9 @@ func start(_target, _damage):
 	damage = _damage
 
 func _process(delta):
-	var direction = global_position.direction_to(target).angle()
-	rotation = move_toward(rotation, direction, delta)
-	var velocity = Vector2(position.x * speed * delta, 0)
-	translate(velocity)
+	var direction = position.direction_to(target).angle()
+	var velocity = Vector2(target.x, target.y).normalized()
+	translate(velocity * speed * delta)
 
 func _on_body_entered(body):
 	print("Struck Enemy")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cavyo77v10kvp"]
+[gd_scene load_steps=6 format=3 uid="uid://b14b217w7iiep"]
 
 [ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_bcqsn"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_jvkca"]
@@ -22,7 +22,8 @@ animations = [{
 radius = 5.0
 height = 12.0
 
-[node name="Rat" type="CharacterBody2D"]
+[node name="Rat" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 script = ExtResource("1_bcqsn")
 health = 10.0
 
