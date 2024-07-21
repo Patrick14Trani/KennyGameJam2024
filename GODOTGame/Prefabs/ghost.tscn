@@ -22,7 +22,7 @@ animations = [{
 radius = 5.0
 height = 14.0
 
-[node name="Ghost" type="CharacterBody2D"]
+[node name="Ghost" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
 script = ExtResource("1_7kgqg")
 

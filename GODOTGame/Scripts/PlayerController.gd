@@ -71,12 +71,8 @@ func start_Lightning():
 	print("LASER LASER")
 	hasLightning = true
 	$LightningTimer.start()
-	#var lightningInit = lightning.instantiate()
-	#lightningInit.mage = player1
-	#lightningInit.barb = player2
-	#get_parent().add_child(lightningInit)
 	lightningObject.show()
-	lightningObject.monitoring = false
+	lightningObject.monitoring = true
 
 func _on_immune_timer_timeout():
 	print("No Longer Immune")

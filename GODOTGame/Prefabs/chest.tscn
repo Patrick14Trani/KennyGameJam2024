@@ -42,7 +42,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ol1v"]
 size = Vector2(13, 15)
 
-[node name="Chest" type="CharacterBody2D"]
+[node name="Chest" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_drk7y")
 health = 10.0
 
