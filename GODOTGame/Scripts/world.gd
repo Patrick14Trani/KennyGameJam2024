@@ -100,6 +100,7 @@ func _on_lightning_spawn_timer_timeout():
 func _on_victory_timer_timeout():
 	Engine.time_scale = 0
 	victory_menu.show()
+	victory_menu.get_node("AudioStreamPlayer").play()
 	victory_restart.grab_focus()
 
 func _on_wave_timer_timeout():
@@ -109,8 +110,6 @@ func _on_wave_timer_timeout():
 	healthpotTimer.paused = true
 	var lightningpotTimer = $LightningSpawnTimer
 	lightningpotTimer.paused = true
-	
-	#TODO upgrade screen
 	waveTimerReady = true
 
 func waveMenu():

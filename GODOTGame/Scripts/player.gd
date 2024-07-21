@@ -54,6 +54,20 @@ func _on_area_2d_body_entered(body):
 	print("Hit")
 	if(body.has_method("get_damage")):
 		print("Attempting Damage")
+		if self.name == "Barb":
+			var barbAhh = $BarbAhh
+			var barbOoh = $BarbOoh
+			var barbAudios = [barbAhh, barbOoh]
+			var barbAudio = barbAudios[randi() % barbAudios.size()]
+			barbAudio.play()
+			
+		if self.name == "Mage":
+			var mageLow = $MageLowPitch
+			var mageHigh = $MageHighPitch
+			var mageAudios = [mageLow, mageHigh]
+			var mageAudio = mageAudios[randi() % mageAudios.size()]
+			mageAudio.play()
+			
 		playerController.take_damage(body.damage)
 
 

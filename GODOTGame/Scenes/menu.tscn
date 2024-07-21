@@ -1031,7 +1031,7 @@ layer_2/tile_data = PackedInt32Array(1703965, 655360, 6, 1966100, 655360, 6, 203
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_v45ht")
-volume_db = -15.0
+volume_db = -20.0
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ejtted0kql6g"]
+[gd_scene load_steps=4 format=3 uid="uid://ejtted0kql6g"]
 
 [ext_resource type="Script" path="res://Scripts/finished_menu.gd" id="1_ipxbx"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="1_to058"]
+[ext_resource type="AudioStream" uid="uid://dnifqw43ui5mn" path="res://Sounds/Mixdown_GameOver.wav" id="3_bctyc"]
 
 [node name="Defeat" type="Control"]
 layout_mode = 3
@@ -53,6 +54,10 @@ theme_override_colors/font_pressed_color = Color(0.839216, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0.839216, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.839216, 0, 0, 1)
 text = "Main Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bctyc")
+volume_db = -20.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

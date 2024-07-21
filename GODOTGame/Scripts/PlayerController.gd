@@ -35,6 +35,7 @@ func _configHealthBar():
 func kill():
 	Engine.time_scale = 0
 	defeat_menu.show()
+	defeat_menu.get_node("AudioStreamPlayer").play()
 	defeat_menu.get_node("MarginContainer/VBoxContainer/Restart").grab_focus()
 
 func take_damage(damage):

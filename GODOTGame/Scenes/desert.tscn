@@ -1,16 +1,20 @@
-[gd_scene load_steps=22 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=26 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
 [ext_resource type="PackedScene" uid="uid://cs2iw2vp0ev0i" path="res://Prefabs/throwing_axe.tscn" id="3_atk2q"]
 [ext_resource type="PackedScene" uid="uid://cg4pufvi4k2h2" path="res://Prefabs/fire_ball.tscn" id="3_nycyh"]
+[ext_resource type="AudioStream" uid="uid://dbufsft5ualep" path="res://Sounds/Barbarian2_8bit.wav" id="4_ib22x"]
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
+[ext_resource type="AudioStream" uid="uid://cmbk40sbxnlb6" path="res://Sounds/Barbarian1_8bit.wav" id="4_rp4gx"]
 [ext_resource type="PackedScene" uid="uid://barrwtpho6031" path="res://Scenes/pause_menu.tscn" id="5_ksg1s"]
 [ext_resource type="PackedScene" uid="uid://ejtted0kql6g" path="res://Scenes/defeat.tscn" id="6_d6iyb"]
+[ext_resource type="AudioStream" uid="uid://bt64jfjl1hgoq" path="res://Sounds/Wizard1_8bit.wav" id="7_088s0"]
 [ext_resource type="Script" path="res://Scripts/victory_timer.gd" id="7_bvd36"]
 [ext_resource type="PackedScene" uid="uid://dcfahtf0hp8jv" path="res://Scenes/victory.tscn" id="7_cgk4m"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="7_m6eni"]
+[ext_resource type="AudioStream" uid="uid://cl8pa7x5coaqb" path="res://Sounds/Wizard2_8bit.wav" id="8_w3ogi"]
 [ext_resource type="FontFile" uid="uid://r5ol33tcvymb" path="res://ArtAssets/Fonts/8-bit-pusab.ttf" id="10_n2clr"]
 [ext_resource type="PackedScene" uid="uid://c0arbnuqswkwc" path="res://Scenes/wavePause_menu.tscn" id="10_oh8e3"]
 [ext_resource type="PackedScene" uid="uid://blaskdsoof8he" path="res://Prefabs/lightning.tscn" id="12_i52jn"]
@@ -482,6 +486,14 @@ playerController = NodePath("../PlayerController")
 projectile = ExtResource("3_atk2q")
 projectileDamage = 15.0
 
+[node name="BarbAhh" type="AudioStreamPlayer2D" parent="Barb"]
+stream = ExtResource("4_rp4gx")
+volume_db = -15.0
+
+[node name="BarbOoh" type="AudioStreamPlayer2D" parent="Barb"]
+stream = ExtResource("4_ib22x")
+volume_db = -15.0
+
 [node name="Mage" parent="." node_paths=PackedStringArray("playerController") instance=ExtResource("2_6vvws")]
 position = Vector2(-21, 0)
 UpControl = "MageUp"
@@ -492,6 +504,14 @@ texturePath = "res://ArtAssets/Tiles/mage.png"
 playerController = NodePath("../PlayerController")
 projectile = ExtResource("3_nycyh")
 projectileDamage = 30.0
+
+[node name="MageLowPitch" type="AudioStreamPlayer2D" parent="Mage"]
+stream = ExtResource("7_088s0")
+volume_db = -15.0
+
+[node name="MageHighPitch" type="AudioStreamPlayer2D" parent="Mage"]
+stream = ExtResource("8_w3ogi")
+volume_db = -15.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.4, 1.4)
