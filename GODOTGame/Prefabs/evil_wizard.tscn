@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr22p6v28l07y"]
+
+[ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_ebv45"]
+[ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_kymec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x31ii"]
+atlas = ExtResource("1_ebv45")
+region = Rect2(51, 153, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o50o4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x31ii")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_inpmw"]
+radius = 5.0
+height = 14.0
+
+[node name="EvilWizard" type="CharacterBody2D"]
+script = ExtResource("1_kymec")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o50o4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_inpmw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

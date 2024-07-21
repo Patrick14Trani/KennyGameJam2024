@@ -2,7 +2,13 @@ extends Node
 
 var ghost = preload("res://Prefabs/ghost.tscn")
 var chest = preload("res://Prefabs/chest.tscn")
-var powerUp = preload("res://Prefabs/power_up.tscn")
+var cyclops = preload("res://Prefabs/cyclops.tscn")
+var spider = preload("res://Prefabs/spider.tscn")
+var bat = preload("res://Prefabs/bat.tscn")
+var rat = preload("res://Prefabs/rat.tscn")
+var slime = preload("res://Prefabs/slime.tscn")
+var evilWizard = preload("res://Prefabs/evil_wizard.tscn")
+var crab = preload("res://Prefabs/crab.tscn")
 var healthPotion = preload("res://Prefabs/health_potion.tscn")
 var lightningPotion = preload("res://Prefabs/lightningUpgrade.tscn")
 var waveNumber = 1
@@ -48,7 +54,7 @@ func pauseMenu():
 
 func _on_spawn_timer_timeout():
 	for n in enemiesSpawned:
-		var enemies = [ghost, chest]
+		var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
 		var enemy = enemies[randi() % enemies.size()]
 		var enemyInit = enemy.instantiate()
 		enemyInit.player1 = get_node("Barb")
@@ -62,7 +68,6 @@ func _on_spawn_timer_timeout():
 		var positionInRect = area.position + Vector2(randf() * area.size.x, randf() * area.size.y)
 		enemyInit.position = positionInRect
 		$Enemies.add_child(enemyInit)
-		#enemiesArray.append(enemyInit)
 	
 func _on_health_potion_spawn_timer_timeout():
 	var health = healthPotion.instantiate()
