@@ -548,9 +548,10 @@ offset_top = -154.0
 offset_right = 404.0
 offset_bottom = 221.0
 
-[node name="PlayerController" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_kgocj")]
+[node name="PlayerController" parent="." node_paths=PackedStringArray("player1", "player2", "lightningObject") instance=ExtResource("4_kgocj")]
 player1 = NodePath("../Mage")
 player2 = NodePath("../Barb")
+lightningObject = NodePath("../Lightning")
 
 [node name="ConsumablesSpawnArea" type="Node" parent="."]
 
