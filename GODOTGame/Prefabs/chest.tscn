@@ -43,7 +43,7 @@ animations = [{
 size = Vector2(13, 15)
 
 [node name="Chest" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 2
+collision_layer = 3
 script = ExtResource("1_drk7y")
 health = 10.0
 

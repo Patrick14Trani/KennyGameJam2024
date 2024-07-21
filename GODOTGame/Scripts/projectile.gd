@@ -7,7 +7,6 @@ var damage = null
 var direction = null
 
 func start(_target, _damage):
-	$Timer.start()
 	target = _target.global_position
 	damage = _damage
 

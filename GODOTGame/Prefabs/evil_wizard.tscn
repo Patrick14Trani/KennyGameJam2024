@@ -23,7 +23,7 @@ radius = 5.0
 height = 14.0
 
 [node name="EvilWizard" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 2
+collision_layer = 3
 script = ExtResource("1_kymec")
 damage = 40.0
 health = 60.0
