@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=19 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
-[ext_resource type="PackedScene" path="res://Scenes/defeat.tscn" id="5_u0gce"]
-[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="6_d4knq"]
-[ext_resource type="PackedScene" path="res://Scenes/victory.tscn" id="7_r5cde"]
-[ext_resource type="PackedScene" uid="uid://dhtu1qv0bk704" path="res://Prefabs/lightning.tscn" id="8_33c46"]
+[ext_resource type="PackedScene" uid="uid://barrwtpho6031" path="res://Scenes/pause_menu.tscn" id="5_ksg1s"]
+[ext_resource type="PackedScene" uid="uid://ejtted0kql6g" path="res://Scenes/defeat.tscn" id="6_d6iyb"]
+[ext_resource type="Script" path="res://Scripts/victory_timer.gd" id="7_bvd36"]
+[ext_resource type="PackedScene" uid="uid://dcfahtf0hp8jv" path="res://Scenes/victory.tscn" id="7_cgk4m"]
+[ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="7_m6eni"]
+[ext_resource type="FontFile" uid="uid://r5ol33tcvymb" path="res://ArtAssets/Fonts/8-bit-pusab.ttf" id="10_n2clr"]
+[ext_resource type="PackedScene" uid="uid://c0arbnuqswkwc" path="res://Scenes/wavePause_menu.tscn" id="10_oh8e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjg8m"]
 size = Vector2(824, 13)
@@ -538,10 +541,9 @@ offset_top = -154.0
 offset_right = 404.0
 offset_bottom = 221.0
 
-[node name="PlayerController" parent="." node_paths=PackedStringArray("player1", "player2", "lightningObject") instance=ExtResource("4_kgocj")]
+[node name="PlayerController" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_kgocj")]
 player1 = NodePath("../Mage")
 player2 = NodePath("../Barb")
-lightningObject = NodePath("../Lightning")
 
 [node name="ConsumablesSpawnArea" type="Node" parent="."]
 
@@ -551,46 +553,78 @@ offset_top = -115.0
 offset_right = 344.0
 offset_bottom = 167.0
 
-[node name="LightningSpawn" type="ReferenceRect" parent="ConsumablesSpawnArea"]
-offset_left = -213.0
-offset_top = -188.0
-offset_right = 216.0
-offset_bottom = -173.0
-
 [node name="HealthPotionSpawnTimer" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
 
-[node name="LightningSpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="PauseMenu" parent="." instance=ExtResource("5_ksg1s")]
+visible = false
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -323.0
+offset_right = -576.0
+offset_bottom = -323.0
+
+[node name="Defeat" parent="." instance=ExtResource("6_d6iyb")]
+visible = false
+z_index = 5
+offset_left = -574.0
+offset_top = -324.0
+offset_right = -574.0
+offset_bottom = -324.0
+
+[node name="VictoryTimer" type="Timer" parent="."]
+wait_time = 600.0
+one_shot = true
 autostart = true
 
-[node name="Defeat" parent="." instance=ExtResource("5_u0gce")]
-visible = false
-offset_left = -575.0
-offset_top = -303.0
-offset_right = -575.0
-offset_bottom = -303.0
+[node name="Label" type="Label" parent="VictoryTimer"]
+offset_left = -399.0
+offset_top = 184.0
+offset_right = -311.0
+offset_bottom = 231.0
+theme = ExtResource("7_m6eni")
+text = "0.00"
+script = ExtResource("7_bvd36")
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_d4knq")]
+[node name="Victory" parent="." instance=ExtResource("7_cgk4m")]
 visible = false
-offset_left = -575.0
-offset_top = -303.0
-offset_right = -575.0
-offset_bottom = -303.0
+z_index = 5
+offset_left = -574.0
+offset_top = -324.0
+offset_right = -574.0
+offset_bottom = -324.0
 
-[node name="Victory" parent="." instance=ExtResource("7_r5cde")]
-visible = false
-offset_left = -575.0
-offset_top = -303.0
-offset_right = -575.0
-offset_bottom = -303.0
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
 
-[node name="Lightning" parent="." node_paths=PackedStringArray("mage", "barb") instance=ExtResource("8_33c46")]
+[node name="WaveLabel" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 197.0
+offset_right = 394.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_n2clr")
+text = "Wave: 1"
+
+[node name="WavePauseMenu" parent="." instance=ExtResource("10_oh8e3")]
 visible = false
-mage = NodePath("../Mage")
-barb = NodePath("../Barb")
+z_index = 5
+offset_left = -573.0
+offset_top = -137.0
+offset_right = -573.0
+offset_bottom = -137.0
+
+[node name="Enemies" type="Node" parent="."]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]
-[connection signal="timeout" from="LightningSpawnTimer" to="." method="_on_lightning_spawn_timer_timeout"]
+[connection signal="timeout" from="VictoryTimer" to="." method="_on_victory_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
