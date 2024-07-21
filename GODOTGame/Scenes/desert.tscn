@@ -1,9 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=17 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
 [ext_resource type="PackedScene" uid="uid://cpykax7rogaps" path="res://Prefabs/player_controller.tscn" id="4_kgocj"]
 [ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="4_m3hrx"]
+[ext_resource type="PackedScene" uid="uid://dqxrvlcj5napx" path="res://Scenes/pause_menu.tscn" id="5_ksg1s"]
+[ext_resource type="PackedScene" uid="uid://ejtted0kql6g" path="res://Scenes/defeat.tscn" id="6_d6iyb"]
+[ext_resource type="Script" path="res://Scripts/victory_timer.gd" id="7_bvd36"]
+[ext_resource type="PackedScene" uid="uid://fetpelbkys7u" path="res://Scenes/victory.tscn" id="7_cgk4m"]
+[ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="7_m6eni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjg8m"]
 size = Vector2(824, 13)
@@ -550,5 +555,49 @@ offset_bottom = 167.0
 wait_time = 30.0
 autostart = true
 
+[node name="PauseMenu" parent="." instance=ExtResource("5_ksg1s")]
+visible = false
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -323.0
+offset_right = -576.0
+offset_bottom = -323.0
+
+[node name="Defeat" parent="." instance=ExtResource("6_d6iyb")]
+visible = false
+z_index = 5
+offset_left = -574.0
+offset_top = -324.0
+offset_right = -574.0
+offset_bottom = -324.0
+
+[node name="VictoryTimer" type="Timer" parent="."]
+wait_time = 600.0
+one_shot = true
+autostart = true
+
+[node name="Label" type="Label" parent="VictoryTimer"]
+offset_left = -399.0
+offset_top = 184.0
+offset_right = -311.0
+offset_bottom = 231.0
+theme = ExtResource("7_m6eni")
+text = "0.00"
+script = ExtResource("7_bvd36")
+
+[node name="Victory" parent="." instance=ExtResource("7_cgk4m")]
+visible = false
+z_index = 5
+offset_left = -574.0
+offset_top = -324.0
+offset_right = -574.0
+offset_bottom = -324.0
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]
+[connection signal="timeout" from="VictoryTimer" to="." method="_on_victory_timer_timeout"]

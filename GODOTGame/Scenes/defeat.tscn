@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://ejtted0kql6g"]
+
+[ext_resource type="Script" path="res://Scripts/finished_menu.gd" id="1_ipxbx"]
+[ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="1_to058"]
+
+[node name="Defeat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ipxbx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -90.0
+offset_right = 155.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_to058")
+theme_override_colors/font_color = Color(0.839216, 0, 0, 1)
+text = "Defeat"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_to058")
+theme_override_colors/font_pressed_color = Color(0.839216, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.839216, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.839216, 0, 0, 1)
+text = "Restart"
+
+[node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_to058")
+theme_override_colors/font_pressed_color = Color(0.839216, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.839216, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.839216, 0, 0, 1)
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

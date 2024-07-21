@@ -5,6 +5,33 @@ var chest = preload("res://Prefabs/chest.tscn")
 var powerUp = preload("res://Prefabs/power_up.tscn")
 var healthPotion = preload("res://Prefabs/health_potion.tscn")
 
+@onready var pause_menu = $PauseMenu
+@onready var pause_resume = $PauseMenu/MarginContainer/VBoxContainer/Resume
+@onready var defeat_menu = $Defeat
+@onready var victory_menu = $Victory
+@onready var victory_restart = $Victory/MarginContainer/VBoxContainer/Restart
+
+var paused = false
+
+func _ready():
+	Engine.time_scale = 1
+
+func _process(_delta):
+	if Input.is_action_just_pressed("Pause"):
+		pauseMenu()
+		
+func pauseMenu():
+	if !defeat_menu.visible:
+		if paused:
+			pause_menu.hide()
+			Engine.time_scale = 1
+		else:
+			pause_menu.show()
+			pause_resume.grab_focus()
+			Engine.time_scale = 0
+			
+		paused = !paused
+
 func _on_spawn_timer_timeout():
 	var enemies = [ghost, chest]
 	var enemy = enemies[randi() % enemies.size()]
@@ -29,3 +56,8 @@ func _on_health_potion_spawn_timer_timeout():
 	var positionInRect = area.position + Vector2(randf() * area.size.x, randf() * area.size.y)
 	health.position = positionInRect
 	add_child(health)
+
+func _on_victory_timer_timeout():
+	Engine.time_scale = 0
+	victory_menu.show()
+	victory_restart.grab_focus()
