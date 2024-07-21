@@ -8,7 +8,7 @@ extends Area2D
 func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$Line2D.points[0] = mage.global_position
 	$Line2D.points[1] = barb.global_position
 	$CollisionShape2D.shape.a = $Line2D.points[0]
