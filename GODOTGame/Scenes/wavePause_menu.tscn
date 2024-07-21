@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0arbnuqswkwc"]
+[gd_scene load_steps=3 format=3 uid="uid://bfan0lufrwbhh"]
 
 [ext_resource type="Script" path="res://Scripts/WavePause_menu.gd" id="1_cyvvp"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="2_qpo8e"]

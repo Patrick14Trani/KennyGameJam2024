@@ -64,7 +64,6 @@ func _on_spawn_timer_timeout():
 		$Enemies.add_child(enemyInit)
 		#enemiesArray.append(enemyInit)
 	
-
 func _on_health_potion_spawn_timer_timeout():
 	var health = healthPotion.instantiate()
 	health.playerCont = get_node("PlayerController")
@@ -90,6 +89,10 @@ func _on_victory_timer_timeout():
 func _on_wave_timer_timeout():
 	var enemyTimer = $SpawnTimer
 	enemyTimer.paused = true
+	
+	var healthpotTimer = $HealthPotionSpawnTimer
+	healthpotTimer.paused = true
+	
 	#TODO upgrade screen
 	waveTimerReady = true
 
@@ -97,9 +100,8 @@ func waveMenu():
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = true
 	wavePause_menu.show()
-	wavePause_menu.grab_focus()
+	wavePause_menu.get_node("MarginContainer/VBoxContainer/Resume").grab_focus()
 	
-
 func nextWave():
 	waveNumber += 1
 	var waveLabel = get_node("WaveLabel")
@@ -112,6 +114,10 @@ func nextWave():
 	else:
 		enemiesSpawned += 1
 	enemyTimer.paused = false
+	
+	var healthpotTimer = $HealthPotionSpawnTimer
+	healthpotTimer.paused = false
+	
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = false
 	
