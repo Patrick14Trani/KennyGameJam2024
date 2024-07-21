@@ -20,6 +20,7 @@ var healthBar : ProgressBar
 
 @onready var p1AnimPlay = player1.get_node("AnimationPlayer") as AnimationPlayer
 @onready var p12AnimPlay = player2.get_node("AnimationPlayer") as AnimationPlayer
+@onready var defeat_menu = get_tree().root.get_child(0).get_node("Defeat")
 
 func _ready():
 	currentHealth = maxHealth
@@ -32,7 +33,9 @@ func _configHealthBar():
 	healthBar.value = maxHealth
 
 func kill():
-	pass
+	Engine.time_scale = 0
+	defeat_menu.show()
+	defeat_menu.get_node("MarginContainer/VBoxContainer/Restart").grab_focus()
 
 func take_damage(damage):
 	if(!hasShield || !isImmune):
