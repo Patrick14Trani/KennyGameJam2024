@@ -165,21 +165,29 @@ func buyPlayerSpeed():
 		points -= playerSpeedUpgradeCost
 		playerSpeedUpgradeCost += 1
 		playerSpeed += 10
+		$Barb.SPEED = playerSpeed
+		$Mage.SPEED = playerSpeed
 
 func buyPlayerDamage():
 	if points >= playerDamageUpgradeCost:
 		points -= playerDamageUpgradeCost
 		playerDamageUpgradeCost += 1
 		playerDamage += 5
+		$Barb/Weapon.get_child(0).damage += 5
+		$Mage/Weapon.get_child(0).damage += 5
 
 func buyPlayerHealth():
 	if points >= playerHealthUpgradeCost:
 		points -= playerHealthUpgradeCost
 		playerHealthUpgradeCost += 1
 		playerHealth += 10
+		$Barb.playerController.maxHealth = playerHealth
+		$Mage.playerController.maxHealth = playerHealth
 
 func buyRotationSpeed():
 	if points >= rotationSpeedUpgradeCost:
 		points -= rotationSpeedUpgradeCost
 		rotationSpeedUpgradeCost += 1
-		rotationSpeed += 100
+		rotationSpeed += 1000
+		$Barb/Weapon.rotation_speed = rotationSpeed
+		$Mage/Weapon.rotation_speed = rotationSpeed
