@@ -2,7 +2,13 @@ extends Node
 
 var ghost = preload("res://Prefabs/ghost.tscn")
 var chest = preload("res://Prefabs/chest.tscn")
-var powerUp = preload("res://Prefabs/power_up.tscn")
+var cyclops = preload("res://Prefabs/cyclops.tscn")
+var spider = preload("res://Prefabs/spider.tscn")
+var bat = preload("res://Prefabs/bat.tscn")
+var rat = preload("res://Prefabs/rat.tscn")
+var slime = preload("res://Prefabs/slime.tscn")
+var evilWizard = preload("res://Prefabs/evil_wizard.tscn")
+var crab = preload("res://Prefabs/crab.tscn")
 var healthPotion = preload("res://Prefabs/health_potion.tscn")
 var lightningPotion = preload("res://Prefabs/lightningUpgrade.tscn")
 var waveNumber = 1
@@ -10,6 +16,18 @@ var enemiesSpawned = 1
 var enemiesArray = []
 var waveTimerReady = false
 var enemiesReady = false
+
+var playerSpeedUpgradeCost = 0
+var playerDamageUpgradeCost = 0
+var playerHealthUpgradeCost = 0
+var rotationSpeedUpgradeCost = 0
+var playerSpeed = 0
+var playerDamage = 0
+var playerHealth = 0
+var rotationSpeed = 0
+var points = 0
+#var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
+var enemies = [spider, bat, rat]
 
 @onready var wavePause_menu = $WavePauseMenu
 @onready var pause_menu = $PauseMenu
@@ -48,7 +66,6 @@ func pauseMenu():
 
 func _on_spawn_timer_timeout():
 	for n in enemiesSpawned:
-		var enemies = [ghost, chest]
 		var enemy = enemies[randi() % enemies.size()]
 		var enemyInit = enemy.instantiate()
 		enemyInit.player1 = get_node("Barb")
@@ -62,7 +79,6 @@ func _on_spawn_timer_timeout():
 		var positionInRect = area.position + Vector2(randf() * area.size.x, randf() * area.size.y)
 		enemyInit.position = positionInRect
 		$Enemies.add_child(enemyInit)
-		#enemiesArray.append(enemyInit)
 	
 func _on_health_potion_spawn_timer_timeout():
 	var health = healthPotion.instantiate()
@@ -89,9 +105,10 @@ func _on_victory_timer_timeout():
 func _on_wave_timer_timeout():
 	var enemyTimer = $SpawnTimer
 	enemyTimer.paused = true
-	
 	var healthpotTimer = $HealthPotionSpawnTimer
 	healthpotTimer.paused = true
+	var lightningpotTimer = $LightningSpawnTimer
+	lightningpotTimer.paused = true
 	
 	#TODO upgrade screen
 	waveTimerReady = true
@@ -99,27 +116,78 @@ func _on_wave_timer_timeout():
 func waveMenu():
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = true
+	points += 3
 	wavePause_menu.show()
-	wavePause_menu.get_node("MarginContainer/VBoxContainer/Resume").grab_focus()
+	wavePause_menu.get_node("MarginContainer2/VBoxContainer/Resume").grab_focus()
 	
 func nextWave():
 	waveNumber += 1
 	var waveLabel = get_node("WaveLabel")
 	waveLabel.set_text("Wave: " + str(waveNumber))
 	wavePause_menu.hide()
+	points = 3
 	
 	var enemyTimer = $SpawnTimer
 	if enemyTimer.wait_time > .1:
 		enemyTimer.wait_time -= .1
 	else:
+		enemyTimer.wait_time = 1
 		enemiesSpawned += 1
 	enemyTimer.paused = false
 	
+	#add enemies to spawn list
+	#var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
+	if waveNumber == 3:
+		enemies.append(crab)
+	elif waveNumber == 4:
+		enemies.append(slime)
+	elif waveNumber == 5:
+		enemies.append(chest)
+	elif waveNumber == 6:
+		enemies.append(ghost)
+	elif waveNumber == 7:
+		enemies.append(cyclops)
+	elif waveNumber == 8:
+		enemies.append(evilWizard)
+	
 	var healthpotTimer = $HealthPotionSpawnTimer
 	healthpotTimer.paused = false
-	
+	var lightningpotTimer = $LightningSpawnTimer
+	lightningpotTimer.paused = false
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = false
 	
 	var waveTimer = $WaveTimer
 	waveTimer.start()
+	
+func buyPlayerSpeed():
+	if points >= playerSpeedUpgradeCost:
+		points -= playerSpeedUpgradeCost
+		playerSpeedUpgradeCost += 1
+		playerSpeed += 10
+		$Barb.SPEED = playerSpeed
+		$Mage.SPEED = playerSpeed
+
+func buyPlayerDamage():
+	if points >= playerDamageUpgradeCost:
+		points -= playerDamageUpgradeCost
+		playerDamageUpgradeCost += 1
+		playerDamage += 5
+		$Barb/Weapon.get_child(0).damage += 5
+		$Mage/Weapon.get_child(0).damage += 5
+
+func buyPlayerHealth():
+	if points >= playerHealthUpgradeCost:
+		points -= playerHealthUpgradeCost
+		playerHealthUpgradeCost += 1
+		playerHealth += 10
+		$Barb.playerController.maxHealth = playerHealth
+		$Mage.playerController.maxHealth = playerHealth
+
+func buyRotationSpeed():
+	if points >= rotationSpeedUpgradeCost:
+		points -= rotationSpeedUpgradeCost
+		rotationSpeedUpgradeCost += 1
+		rotationSpeed += 1000
+		$Barb/Weapon.rotation_speed = rotationSpeed
+		$Mage/Weapon.rotation_speed = rotationSpeed

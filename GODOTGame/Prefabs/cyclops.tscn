@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://muyu5dubjxn8"]
+
+[ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_c6qux"]
+[ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_vn8qi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prl3a"]
+atlas = ExtResource("1_vn8qi")
+region = Rect2(17, 153, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k66r6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prl3a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7oie3"]
+radius = 5.0
+height = 16.0
+
+[node name="Cyclops" type="CharacterBody2D"]
+script = ExtResource("1_c6qux")
+damage = 30.0
+health = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k66r6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7oie3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

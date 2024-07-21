@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://xcufwixadi7f"]
+
+[ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_mvuy3"]
+[ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_rpcla"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h1i4"]
+atlas = ExtResource("1_mvuy3")
+region = Rect2(34, 153, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vifqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h1i4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ac5oo"]
+radius = 6.0
+height = 14.0
+
+[node name="Crab" type="CharacterBody2D"]
+script = ExtResource("1_rpcla")
+damage = 15.0
+health = 15.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vifqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ac5oo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

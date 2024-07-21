@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvwvj004yrhbo"]
+
+[ext_resource type="Texture2D" uid="uid://d15axjjsljxgv" path="res://ArtAssets/Tilemap/tilemap.png" id="1_2ir4c"]
+[ext_resource type="Script" path="res://Scripts/MeleeEnemies.gd" id="1_uauo2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw2uj"]
+atlas = ExtResource("1_2ir4c")
+region = Rect2(0, 170, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ybv3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw2uj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1de3l"]
+radius = 6.0
+height = 12.0
+
+[node name="Bat" type="CharacterBody2D"]
+script = ExtResource("1_uauo2")
+health = 10.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ybv3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_1de3l")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
