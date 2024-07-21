@@ -562,7 +562,7 @@ offset_right = 219.0
 offset_bottom = -165.0
 
 [node name="HealthPotionSpawnTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 20.0
 autostart = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_ksg1s")]
@@ -631,7 +631,7 @@ offset_right = -573.0
 offset_bottom = -141.0
 
 [node name="LightningSpawnTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 35.0
 autostart = true
 
 [node name="Lightning" parent="." node_paths=PackedStringArray("mage", "barb") instance=ExtResource("12_i52jn")]

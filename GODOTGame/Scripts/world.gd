@@ -89,9 +89,10 @@ func _on_victory_timer_timeout():
 func _on_wave_timer_timeout():
 	var enemyTimer = $SpawnTimer
 	enemyTimer.paused = true
-	
 	var healthpotTimer = $HealthPotionSpawnTimer
 	healthpotTimer.paused = true
+	var lightningpotTimer = $LightningSpawnTimer
+	lightningpotTimer.paused = true
 	
 	#TODO upgrade screen
 	waveTimerReady = true
@@ -117,7 +118,8 @@ func nextWave():
 	
 	var healthpotTimer = $HealthPotionSpawnTimer
 	healthpotTimer.paused = false
-	
+	var lightningpotTimer = $LightningSpawnTimer
+	lightningpotTimer.paused = false
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = false
 	
