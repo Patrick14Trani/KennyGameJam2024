@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b68gtdyaq6dpa"]
+[gd_scene load_steps=10 format=3 uid="uid://b68gtdyaq6dpa"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_b1yqu"]
 [ext_resource type="Texture2D" uid="uid://cxivs1tgjv4cn" path="res://ArtAssets/Tiles/tile_0096.png" id="2_cfe20"]
@@ -11,6 +11,9 @@ height = 14.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfs7j"]
 radius = 6.0
 height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqw7t"]
+radius = 72.4431
 
 [sub_resource type="Animation" id="Animation_2dbph"]
 length = 0.001
@@ -73,6 +76,13 @@ metadata/_edit_group_ = true
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_cfs7j")
 
+[node name="RangedAttackZone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedAttackZone"]
+shape = SubResource("CircleShape2D_wqw7t")
+
 [node name="Weapon" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_er4u0")
 rotation_speed = 500
@@ -85,4 +95,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ygof7")
 }
 
+[node name="RangedAttack" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="RangedAttack" to="." method="_on_ranged_attack_timeout"]

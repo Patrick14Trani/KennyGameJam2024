@@ -22,6 +22,7 @@ animations = [{
 size = Vector2(4, 5)
 
 [node name="Staff" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_wgl58")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
