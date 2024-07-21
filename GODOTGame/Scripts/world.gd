@@ -17,6 +17,16 @@ var enemiesArray = []
 var waveTimerReady = false
 var enemiesReady = false
 
+var playerSpeedUpgradeCost = 0
+var playerDamageUpgradeCost = 0
+var playerHealthUpgradeCost = 0
+var rotationSpeedUpgradeCost = 0
+var playerSpeed = 0
+var playerDamage = 0
+var playerHealth = 0
+var rotationSpeed = 0
+var points = 0
+
 @onready var wavePause_menu = $WavePauseMenu
 @onready var pause_menu = $PauseMenu
 @onready var pause_resume = $PauseMenu/MarginContainer/VBoxContainer/Resume
@@ -105,14 +115,16 @@ func _on_wave_timer_timeout():
 func waveMenu():
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = true
+	points += 3
 	wavePause_menu.show()
-	wavePause_menu.get_node("MarginContainer/VBoxContainer/Resume").grab_focus()
+	wavePause_menu.get_node("MarginContainer2/VBoxContainer/Resume").grab_focus()
 	
 func nextWave():
 	waveNumber += 1
 	var waveLabel = get_node("WaveLabel")
 	waveLabel.set_text("Wave: " + str(waveNumber))
 	wavePause_menu.hide()
+	points = 3
 	
 	var enemyTimer = $SpawnTimer
 	if enemyTimer.wait_time > .1:
@@ -130,3 +142,27 @@ func nextWave():
 	
 	var waveTimer = $WaveTimer
 	waveTimer.start()
+	
+func buyPlayerSpeed():
+	if points >= playerSpeedUpgradeCost:
+		points -= playerSpeedUpgradeCost
+		playerSpeedUpgradeCost += 1
+		playerSpeed += 10
+
+func buyPlayerDamage():
+	if points >= playerDamageUpgradeCost:
+		points -= playerDamageUpgradeCost
+		playerDamageUpgradeCost += 1
+		playerDamage += 5
+
+func buyPlayerHealth():
+	if points >= playerHealthUpgradeCost:
+		points -= playerHealthUpgradeCost
+		playerHealthUpgradeCost += 1
+		playerHealth += 10
+
+func buyRotationSpeed():
+	if points >= rotationSpeedUpgradeCost:
+		points -= rotationSpeedUpgradeCost
+		rotationSpeedUpgradeCost += 1
+		rotationSpeed += 100
