@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=27 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://r5ol33tcvymb" path="res://ArtAssets/Fonts/8-bit-pusab.ttf" id="10_n2clr"]
 [ext_resource type="PackedScene" uid="uid://c0arbnuqswkwc" path="res://Scenes/wavePause_menu.tscn" id="10_oh8e3"]
 [ext_resource type="PackedScene" uid="uid://blaskdsoof8he" path="res://Prefabs/lightning.tscn" id="12_i52jn"]
+[ext_resource type="AudioStream" uid="uid://fx3vya6g6lsu" path="res://Sounds/Mixdown_MainTheme_2.wav" id="19_rgn0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjg8m"]
 size = Vector2(824, 13)
@@ -666,6 +667,11 @@ mage = NodePath("../Mage")
 barb = NodePath("../Barb")
 
 [node name="Enemies" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_rgn0i")
+volume_db = -30.0
+autoplay = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]
