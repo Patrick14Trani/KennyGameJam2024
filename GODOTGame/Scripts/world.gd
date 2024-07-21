@@ -26,6 +26,8 @@ var playerDamage = 0
 var playerHealth = 0
 var rotationSpeed = 0
 var points = 0
+#var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
+var enemies = [spider, bat, rat]
 
 @onready var wavePause_menu = $WavePauseMenu
 @onready var pause_menu = $PauseMenu
@@ -64,7 +66,6 @@ func pauseMenu():
 
 func _on_spawn_timer_timeout():
 	for n in enemiesSpawned:
-		var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
 		var enemy = enemies[randi() % enemies.size()]
 		var enemyInit = enemy.instantiate()
 		enemyInit.player1 = get_node("Barb")
@@ -130,8 +131,24 @@ func nextWave():
 	if enemyTimer.wait_time > .1:
 		enemyTimer.wait_time -= .1
 	else:
+		enemyTimer.wait_time = 1
 		enemiesSpawned += 1
 	enemyTimer.paused = false
+	
+	#add enemies to spawn list
+	#var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
+	if waveNumber == 3:
+		enemies.append(crab)
+	elif waveNumber == 4:
+		enemies.append(slime)
+	elif waveNumber == 5:
+		enemies.append(chest)
+	elif waveNumber == 6:
+		enemies.append(ghost)
+	elif waveNumber == 7:
+		enemies.append(cyclops)
+	elif waveNumber == 8:
+		enemies.append(evilWizard)
 	
 	var healthpotTimer = $HealthPotionSpawnTimer
 	healthpotTimer.paused = false
