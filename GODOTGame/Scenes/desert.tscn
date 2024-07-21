@@ -476,6 +476,11 @@ sources/0 = SubResource("TileSetAtlasSource_47epr")
 [node name="Desert" type="Node"]
 script = ExtResource("1_u7lk4")
 
+[node name="Lightning" parent="." node_paths=PackedStringArray("mage", "barb") instance=ExtResource("12_i52jn")]
+visible = false
+mage = NodePath("../Mage")
+barb = NodePath("../Barb")
+
 [node name="Barb" parent="." node_paths=PackedStringArray("playerController") instance=ExtResource("2_6vvws")]
 position = Vector2(21, 0)
 UpControl = "BarbUp"
@@ -660,11 +665,6 @@ offset_bottom = -309.0
 [node name="LightningSpawnTimer" type="Timer" parent="."]
 wait_time = 35.0
 autostart = true
-
-[node name="Lightning" parent="." node_paths=PackedStringArray("mage", "barb") instance=ExtResource("12_i52jn")]
-visible = false
-mage = NodePath("../Mage")
-barb = NodePath("../Barb")
 
 [node name="Enemies" type="Node" parent="."]
 
