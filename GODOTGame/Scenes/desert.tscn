@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck20wuv5nxsk3"]
+[gd_scene load_steps=16 format=3 uid="uid://ck20wuv5nxsk3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_u7lk4"]
 [ext_resource type="PackedScene" uid="uid://b68gtdyaq6dpa" path="res://Prefabs/player.tscn" id="2_6vvws"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/defeat.tscn" id="5_u0gce"]
 [ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="6_d4knq"]
 [ext_resource type="PackedScene" path="res://Scenes/victory.tscn" id="7_r5cde"]
+[ext_resource type="PackedScene" uid="uid://dhtu1qv0bk704" path="res://Prefabs/lightning.tscn" id="8_33c46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjg8m"]
 size = Vector2(824, 13)
@@ -537,9 +538,10 @@ offset_top = -154.0
 offset_right = 404.0
 offset_bottom = 221.0
 
-[node name="PlayerController" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_kgocj")]
+[node name="PlayerController" parent="." node_paths=PackedStringArray("player1", "player2", "lightningObject") instance=ExtResource("4_kgocj")]
 player1 = NodePath("../Mage")
 player2 = NodePath("../Barb")
+lightningObject = NodePath("../Lightning")
 
 [node name="ConsumablesSpawnArea" type="Node" parent="."]
 
@@ -583,6 +585,11 @@ offset_left = -575.0
 offset_top = -303.0
 offset_right = -575.0
 offset_bottom = -303.0
+
+[node name="Lightning" parent="." node_paths=PackedStringArray("mage", "barb") instance=ExtResource("8_33c46")]
+visible = false
+mage = NodePath("../Mage")
+barb = NodePath("../Barb")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="HealthPotionSpawnTimer" to="." method="_on_health_potion_spawn_timer_timeout"]

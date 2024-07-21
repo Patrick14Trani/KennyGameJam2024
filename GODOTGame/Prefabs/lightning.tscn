@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhtu1qv0bk704"]
+[gd_scene load_steps=3 format=3 uid="uid://dhtu1qv0bk704"]
 
 [ext_resource type="Script" path="res://Scripts/lightning.gd" id="1_hs4nf"]
 
-[node name="Lightning" type="Line2D"]
-points = PackedVector2Array(0, 0, 0, 0)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8ku2i"]
+b = Vector2(0, 9)
+
+[node name="Lightning" type="Area2D"]
+monitoring = false
+monitorable = false
 script = ExtResource("1_hs4nf")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_8ku2i")
+debug_color = Color(0.845648, 0, 0.13591, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

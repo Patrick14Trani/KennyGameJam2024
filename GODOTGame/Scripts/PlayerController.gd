@@ -7,7 +7,7 @@ signal killed
 @export var score : int
 @export var player1 : CharacterBody2D
 @export var player2 : CharacterBody2D
-@export var lightningObject : Line2D
+@export var lightningObject : Area2D
 
 var lightning = preload("res://Prefabs/lightning.tscn")
 
@@ -71,12 +71,12 @@ func start_Lightning():
 	print("LASER LASER")
 	hasLightning = true
 	$LightningTimer.start()
-	var lightningInit = lightning.instantiate()
-	lightningInit.mage = player1
-	lightningInit.barb = player2
-	get_parent().add_child(lightningInit)
-	lightningObject = lightningInit
-	pass
+	#var lightningInit = lightning.instantiate()
+	#lightningInit.mage = player1
+	#lightningInit.barb = player2
+	#get_parent().add_child(lightningInit)
+	lightningObject.show()
+	lightningObject.monitoring = false
 
 func _on_immune_timer_timeout():
 	print("No Longer Immune")
@@ -93,5 +93,6 @@ func _on_hit():
 
 func _on_lightning_timer_timeout():
 	hasLightning = false
-	lightningObject.queue_free()
+	lightningObject.hide()
+	lightningObject.monitoring = false
 	
