@@ -25,6 +25,8 @@ height = 14.0
 [node name="Ghost" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_7kgqg")
+damage = 25.0
+health = 35.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xebbc")
