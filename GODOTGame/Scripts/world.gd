@@ -17,15 +17,15 @@ var enemiesArray = []
 var waveTimerReady = false
 var enemiesReady = false
 
-var playerSpeedUpgradeCost = 0
-var playerDamageUpgradeCost = 0
-var playerHealthUpgradeCost = 0
-var rotationSpeedUpgradeCost = 0
+var playerSpeedUpgradeCost = 1
+var playerDamageUpgradeCost = 1
+var playerHealthUpgradeCost = 1
+var rotationSpeedUpgradeCost = 1
 var playerSpeed = 0
 var playerDamage = 0
 var playerHealth = 0
 var rotationSpeed = 0
-var points = 0
+var points = 3
 #var enemies = [ghost, chest, cyclops, spider, bat, rat, slime, evilWizard, crab]
 var enemies = [spider, bat, rat]
 
@@ -116,16 +116,15 @@ func _on_wave_timer_timeout():
 func waveMenu():
 	var victoryTimer = $VictoryTimer
 	victoryTimer.paused = true
-	points += 3
 	wavePause_menu.show()
 	wavePause_menu.get_node("MarginContainer2/VBoxContainer/Resume").grab_focus()
 	
 func nextWave():
+	points += 3
 	waveNumber += 1
 	var waveLabel = get_node("WaveLabel")
 	waveLabel.set_text("Wave: " + str(waveNumber))
 	wavePause_menu.hide()
-	points = 3
 	
 	var enemyTimer = $SpawnTimer
 	if enemyTimer.wait_time > .1:
@@ -161,14 +160,17 @@ func nextWave():
 	waveTimer.start()
 	
 func buyPlayerSpeed():
+	print("Bought speed upgrade for: " + str(playerSpeedUpgradeCost))
 	if points >= playerSpeedUpgradeCost:
 		points -= playerSpeedUpgradeCost
 		playerSpeedUpgradeCost += 1
-		playerSpeed += 10
-		$Barb.SPEED = playerSpeed
-		$Mage.SPEED = playerSpeed
+		playerSpeed += 20
+		$Barb.SPEED += 20
+		$Mage.SPEED += 20
+
 
 func buyPlayerDamage():
+	print("Bought damage upgrade for: " + str(playerDamageUpgradeCost))
 	if points >= playerDamageUpgradeCost:
 		points -= playerDamageUpgradeCost
 		playerDamageUpgradeCost += 1
@@ -177,17 +179,26 @@ func buyPlayerDamage():
 		$Mage/Weapon.get_child(0).damage += 5
 
 func buyPlayerHealth():
+	print("Bought health upgrade for: " + str(playerHealthUpgradeCost))
 	if points >= playerHealthUpgradeCost:
 		points -= playerHealthUpgradeCost
 		playerHealthUpgradeCost += 1
 		playerHealth += 10
-		$Barb.playerController.maxHealth = playerHealth
-		$Mage.playerController.maxHealth = playerHealth
+		#healthBar.max_value = maxHealth
+		#healthBar.value = maxHealth
+		$Barb.playerController.maxHealth += 10
+		$Barb.playerController.healthBar.max_value += 10
+		$Barb.playerController.healthBar.value = $Barb.playerController.currentHealth
+		#$Mage.playerController.maxHealth = playerHealth
+		$Mage.playerController.maxHealth += 10
+		$Mage.playerController.healthBar.max_value += 10
+		$Mage.playerController.healthBar.value = $Mage.playerController.currentHealth
 
 func buyRotationSpeed():
+	print("Bought rotation speed upgrade for: " + str(rotationSpeedUpgradeCost))
 	if points >= rotationSpeedUpgradeCost:
 		points -= rotationSpeedUpgradeCost
 		rotationSpeedUpgradeCost += 1
-		rotationSpeed += 1000
-		$Barb/Weapon.rotation_speed = rotationSpeed
-		$Mage/Weapon.rotation_speed = rotationSpeed
+		rotationSpeed += 200
+		$Barb/Weapon.rotation_speed += 100
+		$Mage/Weapon.rotation_speed += 100
