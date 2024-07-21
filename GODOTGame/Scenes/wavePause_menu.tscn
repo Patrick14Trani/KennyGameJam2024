@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfan0lufrwbhh"]
+[gd_scene load_steps=3 format=3 uid="uid://c0arbnuqswkwc"]
 
 [ext_resource type="Script" path="res://Scripts/WavePause_menu.gd" id="1_cyvvp"]
 [ext_resource type="Theme" uid="uid://bwoilsxmc1gme" path="res://ArtAssets/Themes/Default.tres" id="2_qpo8e"]
@@ -30,9 +30,51 @@ grow_vertical = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BuySpeed" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qpo8e")
+text = "Buy Speed"
+
+[node name="BuyHealth" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qpo8e")
+text = "Buy Health"
+
+[node name="BuyDamage" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qpo8e")
+text = "Buy Damage"
+
+[node name="BuyRotationSpeed" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qpo8e")
+text = "Buy Rotation Speed"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = 114.0
+offset_right = 155.0
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qpo8e")
 text = "Next Wave"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BuySpeed" to="." method="_on_buy_speed_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BuyHealth" to="." method="_on_buy_health_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BuyDamage" to="." method="_on_buy_damage_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BuyRotationSpeed" to="." method="_on_buy_rotation_speed_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]

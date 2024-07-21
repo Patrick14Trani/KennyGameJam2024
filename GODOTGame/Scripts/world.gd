@@ -11,6 +11,12 @@ var enemiesArray = []
 var waveTimerReady = false
 var enemiesReady = false
 
+var playerSpeed = 0
+var playerDamage = 0
+var playerHealth = 0
+var rotationSpeed = 0
+var points = 0
+
 @onready var wavePause_menu = $WavePauseMenu
 @onready var pause_menu = $PauseMenu
 @onready var pause_resume = $PauseMenu/MarginContainer/VBoxContainer/Resume
@@ -125,3 +131,19 @@ func nextWave():
 	
 	var waveTimer = $WaveTimer
 	waveTimer.start()
+	
+func buyPlayerSpeed():
+	if points > 0:
+		playerSpeed += 10
+
+func buyPlayerDamage():
+	if points > 0:
+		playerDamage += 5
+
+func buyPlayerHealth():
+	if points > 0:
+		playerHealth += 10
+
+func buyRotationSpeed():
+	if points > 0:
+		rotationSpeed += 100
